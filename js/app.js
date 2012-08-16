@@ -3,7 +3,7 @@
  */
 
 Ext.Loader.setPath({
-    'Ext.plugin':'../plugin'
+    'Ext.plugin':'js/plugin'
 });
 
 Ext.application({
