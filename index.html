@@ -1,12 +1,218 @@
-<!DOCTYPE HTML>
-<html manifest="" lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <title>Carousel</title>
-    <link rel="stylesheet" type="text/css" href="css/sencha-touch.css"></link>
-    <script type="text/javascript" src="js/sencha-touch-all-debug.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-</head>
-<body>
-</body>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Sencha Touch Knob by blessenm</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Sencha Touch Knob</h1>
+        <p>This plugin provides images with capabilities of a knob. It works with Sencha Touch 2 and above.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/blessenm/SenchaTouchKnob" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/blessenm/SenchaTouchKnob/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/blessenm/SenchaTouchKnob/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Sencha Touch Knob</h1>
+
+<p>This is plugin that can be added to image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.</p>
+
+<p>Go to the <a href="http://blessenm.github.com/SenchaTouchKnob/" title="Sencha Touch Knob"><strong>project page</strong></a> to see it in action.</p>
+
+<ol>
+<li>
+<p>Continous</p>
+
+<p>Here the knob will rotate a whole 360 degree angle.</p>
+</li>
+<li>
+<p>Sectors</p>
+
+<p>Here the 360 degree will be divided into a number of sector.
+So the knob will only snap to middle of the sector.</p>
+</li>
+<li>
+<p>Arc</p>
+
+<p>We can specify and arc range in degree's and an offset angle.
+In this mode, the knob will only rotate in the specified arc range.</p>
+</li>
+</ol><h2>Documentation</h2>
+
+<h3>Config</h3>
+
+<ul>
+<li>
+<p><strong>knobValue</strong>  </p>
+
+<p>{Number} knobValue The value set for the knob.<br>
+When the sectorCount is 360, knobValue can be between 0 and 360.<br>
+When sectorCount is less than 360, the knob value must be between 1 and the sectorCount.</p>
+</li>
+<li>
+<p><strong>sectorCount</strong></p>
+
+<p>{Number} sectorCount Number of sectors the circle should be divided into.<br>
+The default is 360.<br>
+The value must be 0 &gt; x &lt;= 360.</p>
+</li>
+<li>
+<p><strong>sectorThreshold</strong></p>
+
+<p>{Number} sectorThreshold This specifies a range in which the knob should snap to the nearest sector point.<br>
+The default is 10.<br>
+So if 45 is a sector point, the knob will snap when it reaches an angle between 35 and 55.  </p>
+</li>
+<li>
+<p><strong>arcAngle</strong></p>
+
+<p>{Number} arcAngle The arc range in degree in which the knob will rotate.<br>
+The value must be 0 &gt; x &lt; 360.  </p>
+</li>
+<li>
+<p><strong>arcOffset</strong></p>
+
+<p>{Number} arcOffset This spectifies the offset in whoch the arc should begin.<br>
+Default value is 0.<br>
+The value must be 0 &gt; x &lt; 360.</p>
+</li>
+</ul><h3>Events</h3>
+
+<ol>
+<li>
+<p><strong>turn</strong></p>
+
+<p>This event will fire for the image the plugin is attached to.<br>
+Parameters  </p>
+
+<ul>
+<li>
+<p>angle</p>
+
+<p>Angle at which the knob is rotated to.<br>
+0 starts from the top and move's in clockwise direction.</p>
+</li>
+</ul>
+</li>
+</ol><ul>
+<li>
+<p>value</p>
+
+<p>Value of the knob.<br>
+ For continous mode, the value will be the same as the angle.<br>
+ For sectors mode, the value will be the sector number at which the knob is currently at.<br>
+ For arc, mode, the value will be between 0, and the arcAngle.</p>
+</li>
+</ul><h2>Usage</h2>
+
+<p>For continous mode</p>
+
+<pre><code>{
+    xtype:'img',
+    src:'images/arrow.png',
+    width:128,
+    height:128,
+    centered:true,
+    plugins:[
+        {
+            xclass:'Ext.plugin.Knob'
+        }
+    ],
+    listeners:{
+        turn:function(angle,value){
+        }
+    }
+}  
+</code></pre>
+
+<p>For sectors mode,</p>
+
+<pre><code>{
+    xtype:'img',
+    src:'images/arrow.png',
+    width:128,
+    height:128,
+    centered:true,
+    plugins:[
+        {
+            xclass:'Ext.plugin.Knob',
+            sectorCount:12
+        }
+    ],
+    listeners:{
+        turn:function(angle,value){
+        }
+    }
+}
+</code></pre>
+
+<p>For arc mode,</p>
+
+<pre><code>{
+    xtype:'img',
+    src:'images/arrow.png',
+    width:128,
+    height:128,
+    centered:true,
+    plugins:[
+        {
+            xclass:'Ext.plugin.Knob',
+            arcAngle:270,
+            arcOffset:45
+        }
+    ],
+    listeners:{
+        turn:function(angle,value){
+        }
+    }
+}  
+</code></pre>
+
+<p>Have any issues? Add them to the github bug tracker.<br>
+You can contact me at <strong><a href="mailto:blessenm@gmail.com">blessenm@gmail.com</a></strong></p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/blessenm">blessenm</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34159683-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
 </html>
