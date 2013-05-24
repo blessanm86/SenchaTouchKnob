@@ -43,6 +43,17 @@ Ext.define('Ext.plugin.Knob', {
          * @accessor
          */
         arcOffset: 0,
+        
+        /*
+         * @cfg {String} parentSelector If your image is part of a container that is animated into view, specify a selector
+         * for the parent container that has animation applied to it.
+         * You can ignore this if the image is brought in without any animation. 
+         * Refer the demo for its usage.
+         * Default value is null.
+         * The value must be 0 > x < 360.
+         * @accessor
+         */
+        parentSelector: null
     },
     
     image: null,
@@ -79,12 +90,37 @@ Ext.define('Ext.plugin.Knob', {
     },
     
     onPainted: function(image, eOpts) {
-        this.imageTopPosition  = image.element.getY(),
-        this.imageLeftPosition = image.element.getX(),
-        this.imageCenterX = this.imageLeftPosition + (image.getWidth()/2),
-        this.imageCenterY = this.imageTopPosition  + (image.getHeight()/2);
+        /* Temporary fix for image.getX() and ST 2.2.1.
+         * When the plugin is put in a container the animates into the view,
+         * the x and y coordinates values are not correct in the painted event.
+         * Its because the component painted off screen when the painted event is fired.
+         * After that the component is brought into view.
+         * This issue does not happen if the view is shown on the screen without any animation.
+         *
+         * Fixed by getting the animation duration of the parent container and using setTimeout to
+         * fetch the values after animation. Added an extra 100ms to make sure the values fetched are correct.
+         *
+         * Alternate solution would be to find the animation direction and use the following formula.
+         * left -> var xPos = element.getX() - document.width
+         * right -> var xPos = element.getX() + document.width
+         * top -> var yPos = document.height - element.getY()
+         * bottom -> var yPos = element.getY() - document.height()
+         */
+        var duration = 0,
+            durationPadding = 0,
+            me = this;
+        if(this.getParentSelector()){
+            duration = this.image.up('[xtype=navigationview]').getLayout().getAnimation().getDuration();
+            durationPadding = 100;
+        }
         
-        this.setKnobValue(this.getKnobValue());
+        setTimeout(function(){
+            me.imageTopPosition  = image.getY(),
+            me.imageLeftPosition = image.getX(),
+            me.imageCenterX = me.imageLeftPosition + (image.getWidth()/2),
+            me.imageCenterY = me.imageTopPosition  + (image.getHeight()/2);        
+            me.setKnobValue(me.getKnobValue());
+        },duration + durationPadding);       
     },
     
     onTouchStart: function(event, element, options, eOpts) {
