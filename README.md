@@ -1,9 +1,9 @@
 Sencha Touch Knob
 ===================
 
-This is plugin that can be added to image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.
+This is a plugin that can be added to an image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.
 
-Go to the [__project page__](http://blessenm.github.com/SenchaTouchKnob/ "Sencha Touch Knob") to see it in action.
+Go to the [__project page__](http://blessenm.github.com/SenchaTouchKnob/ "Sencha Touch Knob") to see the source code.
 
  1. Continous
 
@@ -11,7 +11,7 @@ Go to the [__project page__](http://blessenm.github.com/SenchaTouchKnob/ "Sencha
 
  2. Sectors
 
-    Here the 360 degree will be divided into a number of sector.
+    Here the 360 degree will be divided into a number of sectors.
     So the knob will only snap to middle of the sector.
 
  3. Arc
@@ -46,6 +46,12 @@ Go to the [__project page__](http://blessenm.github.com/SenchaTouchKnob/ "Sencha
    {Number} arcOffset This spectifies the offset in whoch the arc should begin.  
    Default value is 0.  
    The value must be 0 > x < 360.
+ + __parentSelector__
+
+   {String} parentSelector If your image is part of a container that is animated onto the screen, specify a selector 
+   for the parent container that has animation applied to it.
+   You can ignore this if the image is brought in without any animation.  
+   Default value is null.
 
 ###Events
 1. __turn__
@@ -131,7 +137,26 @@ For arc mode,
             turn:function(angle,value){
             }
         }
-    }  
+    } 
+    
+Using the parentSelector,
 
+   
+
+    {
+        xtype:'img',
+        src:'images/arrow.png',
+        width:128,
+        height:128,
+        centered:true,
+        plugins:[
+            {
+                xclass:'Ext.plugin.Knob',
+                arcAngle:270,
+                arcOffset:45,
+                parentSelector:'[xtype=navigationview]'
+            }
+        ]
+    } 
  
-You can contact me at __blessenm@gmail.com__
+You can contact me at __blessenm@gmail.com__ 
