@@ -17,9 +17,10 @@ Version
 * This upgraded wil not support backward compatibility with the previous versions of Sencha Touch.
 * Added a new config item 'parentSelector'. If your image is part of a container that is animated into view, specify a selector for the parent container that has animation applied to it. You can ignore this if the image is brought in without any animation.
 
-Issues
+Issues Or Contributions
 -
 
 * Post issues in the github issue tracker.
 *  My email is blessenm@gmail.com
+*  Pull requests are welcome.
 *  [__LinkedIn Pofile__](http://in.linkedin.com/pub/blessan-mathew/24/605/730 "LinkedIn Profie")
