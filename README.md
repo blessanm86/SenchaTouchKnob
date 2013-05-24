@@ -56,19 +56,21 @@ Go to the [__project page__](http://blessenm.github.com/SenchaTouchKnob/ "Sencha
 ###Events
 1. __turn__
 
-   This event will fire for the image the plugin is attached to.  
-   Parameters  
-   - angle
+   This event will fire for the image the plugin is attached to.
+   
+   Parameters
+   
+      * angle
 
-     Angle at which the knob is rotated to.  
-     0 starts from the top and move's in clockwise direction.
+        Angle at which the knob is rotated to.  
+        0 starts from the top and move's in clockwise direction.
+     
+      * value
 
-   - value
-
-     Value of the knob.  
-     For continous mode, the value will be the same as the angle.  
-     For sectors mode, the value will be the sector number at which the knob is currently at.  
-     For arc, mode, the value will be between 0, and the arcAngle.
+        Value of the knob.  
+        For continous mode, the value will be the same as the angle.  
+        For sectors mode, the value will be the sector number at which the knob is currently at.  
+        For arc, mode, the value will be between 0, and the arcAngle.
 
  
 
