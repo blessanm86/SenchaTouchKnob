@@ -7,44 +7,42 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
   <body>
-
-      <header>
-        <h1>Sencha Touch Knob</h1>
-        <p>This plugin provides images with capabilities of a knob. It works with Sencha Touch 2 and above.</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/blessenm/SenchaTouchKnob" class="button fork"><strong>View On GitHub</strong></a>
-        <a href="/SenchaTouchKnob/demo.html" class="button fork" style="margin-left: -195px"><strong>Demo</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/blessenm/SenchaTouchKnob/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/blessenm/SenchaTouchKnob/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/blessenm/SenchaTouchKnob">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/blessenm/SenchaTouchKnob/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/blessenm/SenchaTouchKnob/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
+
       <section>
+        <div id="title">
+          <h1>Sencha Touch Knob</h1>
+          <p>This plugin provides images with capabilities of a knob. It works with Sencha Touch 2 and above.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/blessenm">blessenm</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
         <h1>Sencha Touch Knob</h1>
 
-<p>This is plugin that can be added to image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.</p>
+<p>This is a plugin that can be added to an image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.</p>
 
-<p>Go to the <a href="/SenchaTouchKnob/demo.html" title="Sencha Touch Knob"><strong>demo page</strong></a> to see it in action.</p>
+<p>Go to the <a href="http://blessenm.github.io/SenchaTouchKnob/demo.html" title="Sencha Touch Knob"><strong>demo page</strong></a> to see it in action.</p>
 
 <ol>
 <li>
@@ -55,7 +53,7 @@
 <li>
 <p>Sectors</p>
 
-<p>Here the 360 degree will be divided into a number of sector.
+<p>Here the 360 degree will be divided into a number of sectors.
 So the knob will only snap to middle of the sector.</p>
 </li>
 <li>
@@ -103,34 +101,38 @@ The value must be 0 &gt; x &lt; 360.  </p>
 Default value is 0.<br>
 The value must be 0 &gt; x &lt; 360.</p>
 </li>
+<li>
+<p><strong>parentSelector</strong></p>
+
+<p>{String} parentSelector If your image is part of a container that is animated onto the screen, specify a selector 
+for the parent container that has animation applied to it.
+You can ignore this if the image is brought in without any animation.<br>
+Default value is null.</p>
+</li>
 </ul><h3>Events</h3>
 
 <ol>
 <li>
 <p><strong>turn</strong></p>
 
-<p>This event will fire for the image the plugin is attached to.<br>
-Parameters  </p>
+<p>This event will fire for the image the plugin is attached to.</p>
 
-<ul>
-<li>
-<p>angle</p>
+<p>Parameters</p>
+</li>
+</ol><pre><code>  * angle
 
-<p>Angle at which the knob is rotated to.<br>
-0 starts from the top and move's in clockwise direction.</p>
-</li>
-</ul>
-</li>
-</ol><ul>
-<li>
-<p>value</p>
+    Angle at which the knob is rotated to.  
+    0 starts from the top and move's in clockwise direction.
 
-<p>Value of the knob.<br>
- For continous mode, the value will be the same as the angle.<br>
- For sectors mode, the value will be the sector number at which the knob is currently at.<br>
- For arc, mode, the value will be between 0, and the arcAngle.</p>
-</li>
-</ul><h2>Usage</h2>
+  * value
+
+    Value of the knob.  
+    For continous mode, the value will be the same as the angle.  
+    For sectors mode, the value will be the sector number at which the knob is currently at.  
+    For arc, mode, the value will be between 0, and the arcAngle.
+</code></pre>
+
+<h3>Usage</h3>
 
 <p>For continous mode</p>
 
@@ -192,16 +194,53 @@ Parameters  </p>
         turn:function(angle,value){
         }
     }
-}  
+} 
 </code></pre>
 
-<p>Have any issues? Add them to the github bug tracker.<br>
-You can contact me at <strong><a href="mailto:blessenm@gmail.com">blessenm@gmail.com</a></strong></p>
+<p>Using the parentSelector,</p>
+
+<pre><code>{
+    xtype:'img',
+    src:'images/arrow.png',
+    width:128,
+    height:128,
+    centered:true,
+    plugins:[
+        {
+            xclass:'Ext.plugin.Knob',
+            arcAngle:270,
+            arcOffset:45,
+            parentSelector:'[xtype=navigationview]'
+        }
+    ]
+} 
+</code></pre>
+
+<h2>Version</h2>
+
+<p>1.0</p>
+
+<ul>
+<li>Developed for Sencha Touch 2.0.0</li>
+</ul><p>1.1</p>
+
+<ul>
+<li>Upgraded the plugin to support Sencha Touch 2.2.1</li>
+<li>This upgraded wil not support backward compatibility with the previous versions of Sencha Touch.</li>
+<li>Added a new config item 'parentSelector'. If your image is part of a container that is animated into view, specify a selector for the parent container that has animation applied to it. You can ignore this if the image is brought in without any animation.</li>
+</ul><h2>Issues Or Contributions</h2>
+
+<ul>
+<li>Post issues in the github issue tracker.</li>
+<li> My email is <a href="mailto:blessenm@gmail.com">blessenm@gmail.com</a>
+</li>
+<li> Pull requests are welcome.</li>
+<li> <a href="http://in.linkedin.com/pub/blessan-mathew/24/605/730" title="LinkedIn Profie"><strong>LinkedIn Pofile</strong></a>
+</li>
+<li> <a href="http://stackoverflow.com/users/548568/blessenm" title="Stack Overflow Pofile"><strong>Stack Overflow Pofile</strong></a> </li>
+</ul>
       </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/blessenm">blessenm</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
+
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
