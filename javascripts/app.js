@@ -42,15 +42,15 @@ Ext.application({
                                     scope:this
                                 }
                             },
-                            {
-                                text:'Ext.ux.Knob',
-                                listeners:{
-                                    tap:function(button, event, options){
-                                        this.goToNextPage(button,1);    
-                                    },
-                                    scope:this
-                                }
-                            }
+                            //{
+                            //    text:'Ext.ux.Knob',
+                            //    listeners:{
+                            //        tap:function(button, event, options){
+                            //            this.goToNextPage(button,1);    
+                            //        },
+                            //        scope:this
+                            //    }
+                            //}
                         ]
                     }
                 ]
@@ -117,7 +117,8 @@ Ext.application({
                                     centered:true,
                                     plugins:[
                                         {
-                                            xclass:'Ext.plugin.Knob'
+                                            xclass:'Ext.plugin.Knob',
+                                            parentSelector: '[xtype=navigationview]',
                                         }
                                     ],
                                     listeners:{
@@ -171,7 +172,8 @@ Ext.application({
                                         {
                                             xclass:'Ext.plugin.Knob',
                                             sectorCount:12,
-                                            knobValue:3
+                                            knobValue:3,
+                                            parentSelector: '[xtype=navigationview]'
                                         }
                                     ],
                                     listeners:{
