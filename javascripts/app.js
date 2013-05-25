@@ -34,7 +34,7 @@ Ext.application({
                         },
                         items:[
                             {
-                                text:'Ext.plugin.Knob',
+                                text:'Desktop',
                                 listeners:{
                                     tap:function(button, event, options){
                                         this.goToNextPage(button,0);    
@@ -42,15 +42,15 @@ Ext.application({
                                     scope:this
                                 }
                             },
-                            //{
-                            //    text:'Ext.ux.Knob',
-                            //    listeners:{
-                            //        tap:function(button, event, options){
-                            //            this.goToNextPage(button,1);    
-                            //        },
-                            //        scope:this
-                            //    }
-                            //}
+                            {
+                                text:'Phone/Tablet',
+                                listeners:{
+                                    tap:function(button, event, options){
+                                        this.goToNextPage(button,1);    
+                                    },
+                                    scope:this
+                                }
+                            }
                         ]
                     }
                 ]
@@ -58,11 +58,10 @@ Ext.application({
         );
     },
     goToNextPage: function(btn,index){        
-        var knobPlugin = {
+        var desktop = {
             colors:['#741D54','#3D1C55','#2D245C','#05547D','#046C65','#046424','#5C7613','#9C931C','#955C15','#8B3C15','#8B2415','#8D2435'],
             title:btn.getText(),
             layout:'vbox',
-            //scrollable:true,
             defaults:{
                 flex:1    
             },
@@ -178,8 +177,8 @@ Ext.application({
                                     ],
                                     listeners:{
                                         turn:function(angle,value){
-                                            console.info("'background-color:"+knobPlugin.colors[value]+"'");
-                                            btn.up('[xtype="navigationview"]').down('[html="&nbsp;"]').setStyle("background-color:"+knobPlugin.colors[value]);
+                                            console.info("'background-color:"+desktop.colors[value]+"'");
+                                            btn.up('[xtype="navigationview"]').down('[html="&nbsp;"]').setStyle("background-color:"+desktop.colors[value]);
                                         }
                                     }
                                 }
@@ -193,14 +192,90 @@ Ext.application({
             ]
         };
         
-        var knobExtension = {
-            title:btn.getText()
+        var phone = {
+            title:btn.getText(),
+            layout:'vbox',
+            defaults:{
+                margin:5    
+            },
+            items:[
+                {
+                    layout:{
+                        type:'hbox',
+                        pack:'center'
+                    },
+                    items:[{
+                        xtype:'segmentedbutton',
+                        allowDepress:true,
+                        items:[
+                            {
+                                text:'Continous',
+                                pressed:true
+                            },
+                            {
+                                text:'Sectors'
+                            },
+                            {
+                                text:'Arcs'
+                            }
+                        ],
+                        listeners: {
+                            toggle: function(container, button, pressed){
+                                if((button.getText() === 'Continous') && (pressed === true)){
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('continous');
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                } else if((button.getText() === 'Sectors') && (pressed === true)){
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('sector');
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setSectorCount(12);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(1);
+                                } else if((button.getText() === 'Arcs') && (pressed === true)){
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('arc');
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcAngle(270);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcOffset(45);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                }
+                            }
+                        }
+                    }]
+                },
+                {
+                    xtype:'panel',
+                    flex:1,
+                    items:[{
+                        xtype:'img',
+                        src:'images/knob.png',
+                        width:128,
+                        height:128,
+                        centered:true,
+                        plugins:[
+                            {
+                                xclass:'Ext.plugin.Knob',
+                                parentSelector: '[xtype=navigationview]',
+                            }
+                        ],
+                        listeners:{
+                            turn:function(angle,value){
+                                btn.up('[xtype="navigationview"]').down('[placeHolder="Knob Angle"]').setValue(angle);
+                                btn.up('[xtype="navigationview"]').down('[placeHolder="Knob Value"]').setValue(value);
+                            }
+                        }
+                    }]
+                },
+                {
+                    xtype:'textfield',
+                    placeHolder:'Knob Angle'
+                },
+                {
+                    xtype:'textfield',
+                    placeHolder:'Knob Value'
+                }
+            ]
         };
         
         if(index === 0){
-            btn.up('[xtype="navigationview"]').push(knobPlugin);    
+            btn.up('[xtype="navigationview"]').push(desktop);    
         } else {
-            btn.up('[xtype="navigationview"]').push(knobExtension);
+            btn.up('[xtype="navigationview"]').push(phone);
         }        
     }
 });
