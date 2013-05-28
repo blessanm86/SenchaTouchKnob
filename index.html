@@ -101,14 +101,6 @@ The value must be 0 &gt; x &lt; 360.  </p>
 Default value is 0.<br>
 The value must be 0 &gt; x &lt; 360.</p>
 </li>
-<li>
-<p><strong>parentSelector</strong></p>
-
-<p>{String} parentSelector If your image is part of a container that is animated onto the screen, specify a selector 
-for the parent container that has animation applied to it.
-You can ignore this if the image is brought in without any animation.<br>
-Default value is null.</p>
-</li>
 </ul><h3>Events</h3>
 
 <ol>
@@ -197,25 +189,6 @@ Default value is null.</p>
 } 
 </code></pre>
 
-<p>Using the parentSelector,</p>
-
-<pre><code>{
-    xtype:'img',
-    src:'images/arrow.png',
-    width:128,
-    height:128,
-    centered:true,
-    plugins:[
-        {
-            xclass:'Ext.plugin.Knob',
-            arcAngle:270,
-            arcOffset:45,
-            parentSelector:'[xtype=navigationview]'
-        }
-    ]
-} 
-</code></pre>
-
 <h2>Version</h2>
 
 <p>1.0</p>
@@ -227,7 +200,6 @@ Default value is null.</p>
 <ul>
 <li>Upgraded the plugin to support Sencha Touch 2.2.1</li>
 <li>This upgraded wil not support backward compatibility with the previous versions of Sencha Touch.</li>
-<li>Added a new config item 'parentSelector'. If your image is part of a container that is animated into view, specify a selector for the parent container that has animation applied to it. You can ignore this if the image is brought in without any animation.</li>
 </ul><h2>Issues Or Contributions</h2>
 
 <ul>
