@@ -42,18 +42,7 @@ Ext.define('Ext.plugin.Knob', {
          * The value must be 0 > x < 360.
          * @accessor
          */
-        arcOffset: 0,
-        
-        /*
-         * @cfg {String} parentSelector If your image is part of a container that is animated into view, specify a selector
-         * for the parent container that has animation applied to it.
-         * You can ignore this if the image is brought in without any animation. 
-         * Refer the demo for its usage.
-         * Default value is null.
-         * The value must be 0 > x < 360.
-         * @accessor
-         */
-        parentSelector: null
+        arcOffset: 0
     },
     
     image: null,
@@ -77,11 +66,6 @@ Ext.define('Ext.plugin.Knob', {
         
         image.setStyle('background-color:transparent');
         
-        image.on({
-            painted: 'onPainted',            
-            scope: this
-        });
-        
         image.element.on({
             touchstart: 'onTouchStart',
             touchmove: 'onTouchMove',
@@ -89,30 +73,28 @@ Ext.define('Ext.plugin.Knob', {
         });
     },
     
-    onPainted: function(image, eOpts) {
-        if(this.getParentSelector()){            
-            var animation = this.image.up('[xtype=navigationview]').getLayout().getAnimation();
-            animation.on('animationend', function () {
-                this.getInitialValues(image);    
-            }, this);
-            return;
-        }
-        this.getInitialValues(image);
-    },
-    
-    getInitialValues: function(image){console.info('sdfdf');
-        this.imageTopPosition  = image.getY(),
-        this.imageLeftPosition = image.getX(),
-        this.imageCenterX = this.imageLeftPosition + (image.getWidth()/2),
-        this.imageCenterY = this.imageTopPosition  + (image.getHeight()/2);        
+    getInitialValues: function(imageEl){
+        var box = imageEl.dom.getBoundingClientRect(),
+            round = Math.round,
+            xCenter = round((round(box.left)+round(box.right))/2),
+            yCenter = round((round(box.top)+round(box.bottom))/2),
+            xPos = round(xCenter - (box.width/2)),
+            yPos = round(yCenter - (box.height/2));
+        this.imageTopPosition  = yPos,
+        this.imageLeftPosition = xPos,
+        this.imageCenterX = xCenter,
+        this.imageCenterY = yCenter;        
         this.setKnobValue(this.getKnobValue());    
     },
     
     onTouchStart: function(event, element, options, eOpts) {
+        event.stopEvent();
+        this.getInitialValues(this.image.element);
         this.rotateKnob(event);
     },
     
     onTouchMove: function(event, element, options, eOpts) {
+        event.stopEvent();
         this.rotateKnob(event);
     },
     
@@ -216,5 +198,6 @@ Ext.define('Ext.plugin.Knob', {
             this.setSectorCount(360);
             //Still need to manually set the arcAngle and arcOffset after the changeKnobMode function is executed.
         }
+        return this;
     }
 });

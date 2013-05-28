@@ -93,17 +93,14 @@ Ext.application({
                                     listeners: {
                                         toggle: function(container, button, pressed){
                                             if((button.getText() === 'Continous') && (pressed === true)){
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('continous');
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                                        .changeKnobMode('continous').setKnobValue(0);
                                             } else if((button.getText() === 'Sectors') && (pressed === true)){
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('sector');
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setSectorCount(12);
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(1);
+                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                                        .changeKnobMode('sector').setSectorCount(12).setKnobValue(1);
                                             } else if((button.getText() === 'Arcs') && (pressed === true)){
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('arc');
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcAngle(270);
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcOffset(45);
-                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                                btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                                        .changeKnobMode('arc').setArcAngle(270).setArcOffset(45).setKnobValue(0);
                                             }
                                         }
                                     }
@@ -116,8 +113,7 @@ Ext.application({
                                     centered:true,
                                     plugins:[
                                         {
-                                            xclass:'Ext.plugin.Knob',
-                                            parentSelector: '[xtype=navigationview]',
+                                            xclass:'Ext.plugin.Knob'
                                         }
                                     ],
                                     listeners:{
@@ -171,8 +167,7 @@ Ext.application({
                                         {
                                             xclass:'Ext.plugin.Knob',
                                             sectorCount:12,
-                                            knobValue:3,
-                                            parentSelector: '[xtype=navigationview]'
+                                            knobValue:3
                                         }
                                     ],
                                     listeners:{
@@ -222,17 +217,14 @@ Ext.application({
                         listeners: {
                             toggle: function(container, button, pressed){
                                 if((button.getText() === 'Continous') && (pressed === true)){
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('continous');
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                            .changeKnobMode('continous').setKnobValue(0);
                                 } else if((button.getText() === 'Sectors') && (pressed === true)){
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('sector');
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setSectorCount(12);
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(1);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                            .changeKnobMode('sector').setSectorCount(12).setKnobValue(1);
                                 } else if((button.getText() === 'Arcs') && (pressed === true)){
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].changeKnobMode('arc');
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcAngle(270);
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setArcOffset(45);
-                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0].setKnobValue(0);
+                                    btn.up('[xtype="navigationview"]').down('[xtype="img"]').getPlugins()[0]
+                                            .changeKnobMode('arc').setArcAngle(270).setArcOffset(45).setKnobValue(0);
                                 }
                             }
                         }
@@ -249,8 +241,7 @@ Ext.application({
                         centered:true,
                         plugins:[
                             {
-                                xclass:'Ext.plugin.Knob',
-                                parentSelector: '[xtype=navigationview]',
+                                xclass:'Ext.plugin.Knob'
                             }
                         ],
                         listeners:{
