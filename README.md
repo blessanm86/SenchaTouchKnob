@@ -46,12 +46,6 @@ Go to the [__demo page__](http://blessenm.github.io/SenchaTouchKnob/demo.html "S
    {Number} arcOffset This spectifies the offset in whoch the arc should begin.  
    Default value is 0.  
    The value must be 0 > x < 360.
- + __parentSelector__
-
-   {String} parentSelector If your image is part of a container that is animated onto the screen, specify a selector 
-   for the parent container that has animation applied to it.
-   You can ignore this if the image is brought in without any animation.  
-   Default value is null.
 
 ###Events
 1. __turn__
@@ -139,27 +133,7 @@ For arc mode,
             turn:function(angle,value){
             }
         }
-    } 
-    
-Using the parentSelector,
-
-   
-
-    {
-        xtype:'img',
-        src:'images/arrow.png',
-        width:128,
-        height:128,
-        centered:true,
-        plugins:[
-            {
-                xclass:'Ext.plugin.Knob',
-                arcAngle:270,
-                arcOffset:45,
-                parentSelector:'[xtype=navigationview]'
-            }
-        ]
-    } 
+    }
 
 Version
 - 
@@ -171,7 +145,6 @@ Version
 
 * Upgraded the plugin to support Sencha Touch 2.2.1
 * This upgraded wil not support backward compatibility with the previous versions of Sencha Touch.
-* Added a new config item 'parentSelector'. If your image is part of a container that is animated into view, specify a selector for the parent container that has animation applied to it. You can ignore this if the image is brought in without any animation.
 
 Issues Or Contributions
 -
