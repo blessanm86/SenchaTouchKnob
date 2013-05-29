@@ -58,11 +58,14 @@ Ext.define('Ext.plugin.Knob', {
     knobAngle: 0,   
 
     init: function(image) {
+        this.image = image ;
+        
+        //Set the knobValue to 1 if sectors are used and the knobValue isn't specified
         if((this.getKnobValue() === 0) && (this.getSectorCount() !== 360)){
             this.setKnobValue(1);    
+        } else {
+            this.setKnobValue(this.getKnobValue());
         }
-        
-        this.image = image ;
         
         image.setStyle('background-color:transparent');
         
