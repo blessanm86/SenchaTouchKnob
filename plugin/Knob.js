@@ -78,8 +78,8 @@ Ext.define('Ext.plugin.Knob', {
             round = Math.round,
             xCenter = round((round(box.left)+round(box.right))/2),
             yCenter = round((round(box.top)+round(box.bottom))/2),
-            xPos = round(xCenter - (box.width/2)),
-            yPos = round(yCenter - (box.height/2));
+            xPos = round(xCenter - (this.image.getWidth()/2)),
+            yPos = round(yCenter - (this.image.getHeight()/2));
         this.imageTopPosition  = yPos,
         this.imageLeftPosition = xPos,
         this.imageCenterX = xCenter,
