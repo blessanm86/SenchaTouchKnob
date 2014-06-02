@@ -3,7 +3,7 @@
  */
 
 Ext.Loader.setPath({
-    'Ext.plugin':'https://raw.github.com/blessenm/SenchaTouchKnob/master/plugin/'
+    'Ext.plugin':'https://raw.github.com/blessenm/SenchaTouchKnob/master/plugin'
 });
 
 Ext.application({
