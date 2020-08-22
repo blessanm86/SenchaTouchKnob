@@ -3,7 +3,7 @@ Sencha Touch Knob
 
 This is a plugin that can be added to an image class of sencha touch 2 and above. This provides various functionality of a rotating knob. There are currently 3 modes the knob will work.
 
-Go to the [__demo page__](http://blessenm.github.io/SenchaTouchKnob/demo.html "Sencha Touch Knob") to see it in action.
+Go to the [__demo page__](http://blessanm86.github.io/SenchaTouchKnob/demo.html "Sencha Touch Knob") to see it in action.
 
  1. Continous
 
